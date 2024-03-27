@@ -145,7 +145,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
               child: const Center(
                 child: Text(
                   'Ошибка передачи данных',
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
             ),

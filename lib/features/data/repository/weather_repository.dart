@@ -37,7 +37,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
 
   @override
   Future<WeatherDaysModel?> getDaysWeather(String cityName) async {
-     final parameters = {
+    final parameters = {
       'appid': '1369dd6b5ae78fc9952261ab9aa236b4',
       'q': cityName,
       'units': 'metric',
@@ -56,7 +56,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
         return WeatherDaysModel.fromJson(json.decode(response.body));
       }
     } catch (e) {
-      throw Exception(e.toString());
+      throw Exception(
+        e.toString(),
+      );
     }
   }
 }
