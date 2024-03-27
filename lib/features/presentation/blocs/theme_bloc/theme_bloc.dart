@@ -7,7 +7,7 @@ import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_state.d
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
-      : super(ThemeState(themeData: appThemData[AppThemes.LightTheme]!)) {
+      : super(ThemeState(themeData: appThemData[AppThemes.lightTheme]!)) {
     on<ThemeChangedEvent>(_themeChangedEvent);
   }
 
@@ -15,13 +15,13 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     final bool isDarkTheme = await isDark();
     //  emit(state.copyWith(weatherStatus: WeatherStatus.loaded, weatherModel: getWeather));
     if (isDarkTheme) {
-      final myTheme = appThemData[AppThemes.DarkTheme];
+      final myTheme = appThemData[AppThemes.darkTheme];
       emit(state.copyWith(
         themeStatus: ThemeStatus.changed,
         themeData: myTheme,
       ));
     } else {
-      final myTheme = appThemData[AppThemes.LightTheme];
+      final myTheme = appThemData[AppThemes.lightTheme];
       emit(state.copyWith(
         themeStatus: ThemeStatus.changedOff,
         themeData: myTheme,

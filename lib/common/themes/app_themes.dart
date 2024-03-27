@@ -1,53 +1,29 @@
 import 'package:flutter/material.dart';
 
 enum AppThemes {
-  LightTheme,
-  DarkTheme,
+  lightTheme,
+  darkTheme,
 }
 
-// class MyColors {
-//   final Color? cardColor;
-//   final Color? iconColor;
-
-//   MyColors({required this.cardColor, required this.iconColor});
-// }
-
-// class MyColors extends ThemeExtension<MyColors> {
-//   const MyColors({
-//     required this.cardColor,
-//     required this.iconColor,
-//   });
-
-//   final Color? cardColor;
-//   final Color? iconColor;
-
-//   @override
-//   MyColors copyWith({Color? cardColor, Color? danger}) {
-//     return MyColors(
-//       cardColor: cardColor ?? cardColor,
-//       iconColor: iconColor ?? iconColor,
-//     );
-//   }
-
-//   @override
-//   ThemeExtension<MyColors> lerp(
-//       covariant ThemeExtension<MyColors>? other, double t) {
-//     if (other is! MyColors) {
-//       return this;
-//     }
-//     return MyColors(
-//       cardColor: Color.lerp(cardColor, other.cardColor, t),
-//       iconColor: Color.lerp(iconColor, other.iconColor, t),
-//     );
-//   }
-
-//   @override
-//   String toString() => 'MyColors(cardColor: $cardColor, iconColor: $iconColor)';
-// }
-
 final appThemData = {
-  AppThemes.DarkTheme: ThemeData.dark(),
-  AppThemes.LightTheme: ThemeData.light()
+  AppThemes.darkTheme: ThemeData.dark().copyWith(
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(
+        color: Colors.white,
+        decorationColor: Colors.white,
+      ),
+      bodyMedium: TextStyle(
+        color: Colors.white,
+        decorationColor: Colors.white,
+      ),
+      bodySmall: TextStyle(
+        color: Colors.white,
+        decorationColor: Colors.white,
+      ),
+      
+    ),
+  ),
+  AppThemes.lightTheme: ThemeData.light()
 };
 
 extension CustomColorSchemeX on ColorScheme {
