@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
-import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
-import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_state.dart';
@@ -29,9 +26,9 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, // soften the shadow
+                      blurRadius: 5.0,
                       spreadRadius: 0.0,
-                      offset: Offset(10, 10)),
+                      offset: const Offset(10, 10)),
                 ]),
             width: 450,
             height: 366,
@@ -40,7 +37,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             ),
@@ -52,9 +49,9 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black.withOpacity(0.5),
-                        blurRadius: 5.0, // soften the shadow
+                        blurRadius: 5.0, 
                         spreadRadius: 0.0,
-                        offset: Offset(10, 10)),
+                        offset: const Offset(10, 10)),
                   ]),
               width: 450,
               height: 366,
@@ -63,7 +60,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 30,
                     top: 20,
                   ),
@@ -71,7 +68,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
+                        const Center(
                             child: Text(
                           '5 Days Forecast:',
                           style: TextStyle(
@@ -88,24 +85,24 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                             return Row(
                               children: [
                                 getIcons(state.weatherDaysModel!.list![index]
-                                    .weather![0].main)!,
-                                SizedBox(
+                                    .weather![0].main!)!,
+                                const SizedBox(
                                   width: 43,
                                 ),
                                 Text(
                                   '${state.weatherDaysModel!.list![index].temp!.day!.toInt()}°C',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 24,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 42,
                                 ),
                                 Text(
-                                  '${DateFormat('EEEE, d MMM').format(DateTime.fromMillisecondsSinceEpoch(state.weatherDaysModel!.list![index].dt! * 1000))}',
-                                  style: TextStyle(
+                                  DateFormat('EEEE, d MMM').format(DateTime.fromMillisecondsSinceEpoch(state.weatherDaysModel!.list![index].dt! * 1000)),
+                                  style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20,
@@ -120,14 +117,14 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                   ),
                 ),
               ));
-        } else if (state.weatherDaysStatus == WeatherStatus.error) {
+        } else if (state.weatherDaysStatus == WeatherDaysStatus.error) {
           return Container(
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.5),
-                  blurRadius: 10.0, // soften the shadow
+                  blurRadius: 10.0, 
                   spreadRadius: 0.0,
-                  offset: Offset(10, 20)),
+                  offset: const Offset(10, 20)),
             ]),
             width: 510,
             height: 330,
@@ -135,7 +132,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Ошибка передачи данных',
                   style: TextStyle(fontSize: 40),
@@ -144,7 +141,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
             ),
           );
         }
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }

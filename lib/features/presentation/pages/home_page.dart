@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +17,8 @@ import 'package:weather_web/features/presentation/widgets/days_forecast_widget.d
 import 'package:weather_web/features/presentation/widgets/hourly_forecast_widget.dart';
 import 'package:weather_web/features/presentation/widgets/name_card_widget.dart';
 import 'package:weather_web/features/presentation/widgets/properties_card_widget.dart';
+import 'package:weather_web/features/presentation/widgets/switch_widget.dart';
+import 'package:weather_web/features/presentation/widgets/textfield_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,86 +34,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 78.99),
+          padding: EdgeInsets.symmetric(horizontal: 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 63,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    children: [
-                      Switch(
-                        thumbColor: MaterialStatePropertyAll(Colors.black),
-                        trackColor: MaterialStatePropertyAll(
-                          Color.fromRGBO(217, 217, 217, 1),
-                        ),
-                        activeColor: Colors.black,
-                        activeTrackColor: Color.fromRGBO(217, 217, 217, 1),
-                        value: isDark,
-                        onChanged: (value) async {
-                          setState(() {
-                            isDark = !isDark;
-                          });
-
-                          context
-                              .read<ThemeBloc>()
-                              .add(ThemeChangedEvent(isDark: isDark));
-                        },
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        isDark == false ? 'Light Mode' : 'Dark Mode',
-                        style: TextStyle(
-                          color: isDark == false ? Colors.black : Colors.white,
-                          fontFamily: 'Popins',
-                          fontWeight: FontWeight.w800,
-                          fontSize: 18,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
+                  SwitchWidget(),
+                  SizedBox(
                     width: 78,
                   ),
-                  SizedBox(
-                    width: 800,
-                    height: 62,
-                    child: TextField(
-                      controller: cityController,
-                      onSubmitted: (value) {
-                        context.read<WeatherBloc>().add(
-                            GetWeatherEvent(cityName: cityController.text));
-                        context.read<WeatherDaysBloc>().add(
-                            GetWeatherDaysEvent(cityName: cityController.text));
-                      },
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 20),
-                          hintText: 'Search for your preffered city...',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          prefixIcon: Icon(Icons.zoom_in)),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 49,
-              ),
-              const Row(
-                children: [
-                  NameCardWidget(),
-                  SizedBox(
-                    width: 55,
-                  ),
-                  PropertiesCardWidget(),
+                  TextFieldWidget(),
                 ],
               ),
               SizedBox(
@@ -117,11 +59,39 @@ class _HomePageState extends State<HomePage> {
               ),
               Row(
                 children: [
-                  DaysForecastWidget(),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 2,
+                    child: NameCardWidget(),
+                  ),
                   SizedBox(
                     width: 55,
                   ),
-                  HourlyForecastWidget(),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 3,
+                    child: PropertiesCardWidget(),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 49,
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 1,
+                    child: DaysForecastWidget(),
+                  ),
+                  SizedBox(
+                    width: 55,
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 2,
+                    child: HourlyForecastWidget(),
+                  ),
                 ],
               ),
             ],

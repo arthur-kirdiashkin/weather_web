@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_bloc.dart';
@@ -8,10 +10,15 @@ import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weathe
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_event.dart';
 import 'package:weather_web/features/presentation/pages/home_page.dart';
 import 'package:weather_web/locator.dart';
+import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependency();
+  await windowManager.ensureInitialized(); 
+  if(Platform.isWindows) {
+    WindowManager.instance.setMinimumSize(const Size(1580, 1000));
+  }
   runApp(const MyApp());
 }
 

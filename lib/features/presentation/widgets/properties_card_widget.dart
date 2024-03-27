@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget.dart';
 import 'package:lottie/lottie.dart';
 
 class PropertiesCardWidget extends StatefulWidget {
@@ -29,7 +25,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, // soften the shadow
+                      blurRadius: 5.0, 
                       spreadRadius: 0.0,
                       offset: const Offset(10, 10)),
                 ]),
@@ -110,7 +106,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                               )
                             ]),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 27,
                           ),
                           Row(
@@ -119,13 +115,13 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                 'assets/icons/sunrise-white 1.png',
                                 color: Theme.of(context).colorScheme.iconColor,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 11,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Sunrice',
                                     style: TextStyle(
                                         fontFamily: 'Popins',
@@ -134,7 +130,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                   ),
                                   Text(
                                     '${getClockInUtcPlus3Hours(state.weatherModel!.city!.sunrise!)}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontFamily: 'Popins',
                                         fontWeight: FontWeight.w600,
                                         fontSize: 16),
@@ -143,7 +139,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -152,13 +148,13 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                 'assets/icons/sunset-white 1.png',
                                 color: Theme.of(context).colorScheme.iconColor,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 11,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Sunrset',
                                     style: TextStyle(
                                         fontFamily: 'Popins',
@@ -167,7 +163,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                   ),
                                   Text(
                                     '${getClockInUtcPlus3Hours(state.weatherModel!.city!.sunset!)}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontFamily: 'Popins',
                                         fontWeight: FontWeight.w600,
                                         fontSize: 16),
@@ -178,7 +174,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 60,
                       ),
                       Column(
@@ -187,12 +183,12 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                               state.weatherModel!.list![0].weather![0].main!,
                               220,
                               220)!,
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             '${state.weatherModel!.list![0].weather![0].main}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Popins',
                               fontWeight: FontWeight.w700,
                               fontSize: 32,
@@ -200,7 +196,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 40,
                       ),
                       Column(
@@ -214,21 +210,21 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                     color:
                                         Theme.of(context).colorScheme.iconColor,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 18,
                                   ),
                                   Text(
                                     '${state.weatherModel!.list![0].main!.humidity}%',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 13,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Humidity',
                                     style: TextStyle(
                                       fontFamily: 'Popins',
@@ -238,7 +234,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 40,
                               ),
                               Column(
@@ -248,21 +244,21 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                     color:
                                         Theme.of(context).colorScheme.iconColor,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    '${state.weatherModel!.list![0].wind!.speed}km/h',
-                                    style: TextStyle(
+                                    '${state.weatherModel!.list![0].wind!.speed!.ceil()}km/h',
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 13,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Wind Speed',
                                     style: TextStyle(
                                       fontFamily: 'Popins',
@@ -274,7 +270,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 13,
                           ),
                           Row(
@@ -286,21 +282,21 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                     color:
                                         Theme.of(context).colorScheme.iconColor,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 17,
                                   ),
                                   Text(
                                     '${state.weatherModel!.list![0].main!.pressure}hPa',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 13,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Pressure',
                                     style: TextStyle(
                                       fontFamily: 'Popins',
@@ -310,7 +306,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 55,
                               ),
                               Column(
@@ -319,21 +315,21 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                     'assets/icons_two/sealevel.png',
                                     color: Theme.of(context).colorScheme.iconColor,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
                                     '${state.weatherModel!.list![0].main!.seaLevel}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 13,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Sea level',
                                     style: TextStyle(
                                       fontFamily: 'Popins',

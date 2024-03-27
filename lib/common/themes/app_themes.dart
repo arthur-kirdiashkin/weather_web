@@ -24,11 +24,13 @@ final appThemData = {
     ),
   ),
   AppThemes.lightTheme: ThemeData.light()
+   
+  
 };
 
 extension CustomColorSchemeX on ColorScheme {
   Color get cardColor => brightness == Brightness.light
-      ? Color.fromRGBO(217, 217, 217, 0.8)
+      ? Color.fromRGBO(217, 217, 217, 1)
       : Color.fromRGBO(68, 68, 68, 0.5);
   Color get iconColor =>
       brightness == Brightness.light ? Colors.black : Colors.white;

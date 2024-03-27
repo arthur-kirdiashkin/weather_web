@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -27,9 +27,9 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, // soften the shadow
+                      blurRadius: 5.0, 
                       spreadRadius: 0.0,
-                      offset: Offset(10, 10)),
+                      offset: const Offset(10, 10)),
                 ]),
             width: 835,
             height: 366,
@@ -38,7 +38,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             ),
@@ -52,7 +52,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                       color: Colors.black.withOpacity(0.5),
                       blurRadius: 5.0,
                       spreadRadius: 0.0,
-                      offset: Offset(10, 10)),
+                      offset: const Offset(10, 10)),
                 ]),
             width: 835,
             height: 366,
@@ -61,10 +61,10 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10,),
                   child: Column(
                     children: [
-                      Center(
+                      const Center(
                           child: Text(
                         'Hourly Forecast:',
                         style: TextStyle(
@@ -73,12 +73,12 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                           fontSize: 32,
                         ),
                       )),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Expanded(
                         child: ListView.separated(
-                          separatorBuilder: (context, index) => SizedBox(
+                          separatorBuilder: (context, index) => const SizedBox(
                             width: 20,
                           ),
                           scrollDirection: Axis.horizontal,
@@ -90,7 +90,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                 gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    stops: [0, 1],
+                                    stops: const [0, 1],
                                     colors: state.weatherModel!.list![index]
                                                 .dt! <
                                             state.weatherModel!.list![3].dt!
@@ -108,18 +108,18 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                               height: 250,
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    '${DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(state.weatherModel!.list![index].dt! * 1000))}',
-                                    style: TextStyle(
+                                    DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(state.weatherModel!.list![index].dt! * 1000)),
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w700,
                                       fontSize: 24,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   getIcons(
@@ -127,12 +127,12 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                           .weather![0].main!,
                                       80,
                                       80)!,
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Text(
                                     '${state.weatherModel!.list![index].main!.temp!.toInt()}°C',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w700,
                                       fontSize: 20,
@@ -140,12 +140,12 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                   ),
                                   getWindIcons(state
                                       .weatherModel!.list![index].wind!.deg!)!,
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 2,
                                   ),
                                   Text(
                                     '${state.weatherModel!.list![index].wind!.speed!.toInt()}km/h',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w700,
                                       fontSize: 20,
@@ -157,7 +157,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       )
                     ],
@@ -171,7 +171,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                   color: Colors.black.withOpacity(0.5),
                   blurRadius: 10.0, // soften the shadow
                   spreadRadius: 0.0,
-                  offset: Offset(10, 20)),
+                  offset: const Offset(10, 20)),
             ]),
             width: 870,
             height: 336,
@@ -179,7 +179,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Ошибка передачи данных',
                   style: TextStyle(fontSize: 40),
@@ -188,7 +188,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
             ),
           );
         }
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }

@@ -16,7 +16,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     final bool setDark = await isSetDark(event.isDark);
 
 
-    final bool isDarkTheme = await isDark();
+    final bool isDarkTheme = await isGetDark();
 
     if (isDarkTheme) {
       final myTheme = appThemData[AppThemes.darkTheme];
@@ -41,7 +41,7 @@ Future<bool> isSetDark(bool value) async {
 
 
 
-Future<bool> isDark() async {
+Future<bool> isGetDark() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getBool("is_dark") ?? false;
 }

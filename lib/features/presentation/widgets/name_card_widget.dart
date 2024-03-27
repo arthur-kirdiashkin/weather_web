@@ -26,7 +26,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
                       color: Colors.black.withOpacity(0.5),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 0.0,
-                      offset: Offset(10, 10)),
+                      offset: const Offset(10, 10)),
                 ]),
             width: 510,
             height: 330,
@@ -35,7 +35,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             ),
@@ -49,7 +49,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
                       color: Colors.black.withOpacity(0.5),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 0.0,
-                      offset: Offset(10, 10)),
+                      offset: const Offset(10, 10)),
                 ]),
             width: 510,
             height: 330,
@@ -61,26 +61,26 @@ class _NameCardWidgetState extends State<NameCardWidget> {
                   borderRadius: BorderRadius.circular(30)),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 54,
                   ),
                   Text(
                     state.weatherModel!.city!.name!,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w700,
                       fontSize: 36,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Text(
-                    '${DateFormat.Hm().format(DateTime.now().add(Duration(
+                    DateFormat.Hm().format(DateTime.now().add(Duration(
                       seconds: state.weatherModel!.city!.timezone! -
                           DateTime.now().timeZoneOffset.inSeconds,
-                    )))}',
-                    style: TextStyle(
+                    ))),
+                    style: const TextStyle(
                       height: 1,
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w700,
@@ -88,11 +88,11 @@ class _NameCardWidgetState extends State<NameCardWidget> {
                     ),
                   ),
                   Text(
-                    '${DateFormat('EEEE, d MMM').format(DateTime.now().add(Duration(
+                    DateFormat('EEEE, d MMM').format(DateTime.now().add(Duration(
                       seconds: state.weatherModel!.city!.timezone! -
                           DateTime.now().timeZoneOffset.inSeconds,
-                    )))}',
-                    style: TextStyle(
+                    ))),
+                    style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
@@ -109,7 +109,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
                   color: Colors.black.withOpacity(0.5),
                   blurRadius: 10.0, // soften the shadow
                   spreadRadius: 0.0,
-                  offset: Offset(10, 20)),
+                  offset: const Offset(10, 20)),
             ]),
             width: 510,
             height: 330,
@@ -117,7 +117,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
               shadowColor: Colors.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Ошибка передачи данных',
                   style: TextStyle(fontSize: 40),
@@ -126,7 +126,7 @@ class _NameCardWidgetState extends State<NameCardWidget> {
             ),
           );
         }
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }
