@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
@@ -25,7 +24,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, 
+                      blurRadius: 5.0,
                       spreadRadius: 0.0,
                       offset: const Offset(10, 10)),
                 ]),
@@ -180,9 +179,15 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                       Column(
                         children: [
                           getLottieIcons(
-                              state.weatherModel!.list![0].weather![0].main!,
-                              220,
-                              220)!,
+                                  state
+                                      .weatherModel!.list![0].weather![0].main!,
+                                  220,
+                                  220) ??
+                              Image.network(
+                                'https://rus-traktor.ru/upload/iblock/f74/f74f39dbc9b60954c926d72401adf1cc.jpg',
+                                width: 220,
+                                height: 220,
+                              ),
                           const SizedBox(
                             height: 10,
                           ),
@@ -313,7 +318,8 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                 children: [
                                   Image.asset(
                                     'assets/icons_two/sealevel.png',
-                                    color: Theme.of(context).colorScheme.iconColor,
+                                    color:
+                                        Theme.of(context).colorScheme.iconColor,
                                   ),
                                   const SizedBox(
                                     height: 10,

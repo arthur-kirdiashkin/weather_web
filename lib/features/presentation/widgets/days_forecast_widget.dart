@@ -49,7 +49,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black.withOpacity(0.5),
-                        blurRadius: 5.0, 
+                        blurRadius: 5.0,
                         spreadRadius: 0.0,
                         offset: const Offset(10, 10)),
                   ]),
@@ -85,7 +85,12 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                             return Row(
                               children: [
                                 getIcons(state.weatherDaysModel!.list![index]
-                                    .weather![0].main!)!,
+                                        .weather![0].main!) ??
+                                    Image.network(
+                                      'https://rus-traktor.ru/upload/iblock/f74/f74f39dbc9b60954c926d72401adf1cc.jpg',
+                                      width: 60,
+                                      height: 60,
+                                    ),
                                 const SizedBox(
                                   width: 43,
                                 ),
@@ -101,7 +106,12 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
                                   width: 42,
                                 ),
                                 Text(
-                                  DateFormat('EEEE, d MMM').format(DateTime.fromMillisecondsSinceEpoch(state.weatherDaysModel!.list![index].dt! * 1000)),
+                                  DateFormat('EEEE, d MMM').format(
+                                      DateTime.fromMillisecondsSinceEpoch(state
+                                              .weatherDaysModel!
+                                              .list![index]
+                                              .dt! *
+                                          1000)),
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
@@ -122,7 +132,7 @@ class _DaysForecastWidgetState extends State<DaysForecastWidget> {
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.5),
-                  blurRadius: 10.0, 
+                  blurRadius: 10.0,
                   spreadRadius: 0.0,
                   offset: const Offset(10, 20)),
             ]),

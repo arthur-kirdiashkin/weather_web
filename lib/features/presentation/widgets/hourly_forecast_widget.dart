@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -27,7 +26,7 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, 
+                      blurRadius: 5.0,
                       spreadRadius: 0.0,
                       offset: const Offset(10, 10)),
                 ]),
@@ -61,7 +60,9 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10,),
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                  ),
                   child: Column(
                     children: [
                       const Center(
@@ -91,17 +92,25 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     stops: const [0, 1],
-                                    colors: state.weatherModel!.list![index]
-                                                .dt! <
-                                            state.weatherModel!.list![3].dt!
-                                        ? <Color>[
-                                            Theme.of(context).colorScheme.cardDayColor,
-                                            Theme.of(context).colorScheme.cardDayGradientColor
-                                          ]
-                                        : <Color>[
-                                            Theme.of(context).colorScheme.cardNightColor,
-                                            Theme.of(context).colorScheme.cardNightGradientColor
-                                          ]),
+                                    colors:
+                                        state.weatherModel!.list![index].dt! <
+                                                state.weatherModel!.list![3].dt!
+                                            ? <Color>[
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .cardDayColor,
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .cardDayGradientColor
+                                              ]
+                                            : <Color>[
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .cardNightColor,
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .cardNightGradientColor
+                                              ]),
                                 borderRadius: BorderRadius.circular(40),
                               ),
                               width: 130,
@@ -112,7 +121,11 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                     height: 10,
                                   ),
                                   Text(
-                                    DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(state.weatherModel!.list![index].dt! * 1000)),
+                                    DateFormat.Hm().format(
+                                        DateTime.fromMillisecondsSinceEpoch(
+                                            state.weatherModel!.list![index]
+                                                    .dt! *
+                                                1000)),
                                     style: const TextStyle(
                                       fontFamily: 'Popins',
                                       fontWeight: FontWeight.w700,
@@ -123,10 +136,15 @@ class _HourlyForecastWidgetState extends State<HourlyForecastWidget> {
                                     height: 5,
                                   ),
                                   getIcons(
-                                      state.weatherModel!.list![index]
-                                          .weather![0].main!,
-                                      80,
-                                      80)!,
+                                          state.weatherModel!.list![index]
+                                              .weather![0].main!,
+                                          80,
+                                          80) ??
+                                      Image.network(
+                                        'https://rus-traktor.ru/upload/iblock/f74/f74f39dbc9b60954c926d72401adf1cc.jpg',
+                                        width: 60,
+                                        height: 60,
+                                      ),
                                   const SizedBox(
                                     height: 5,
                                   ),
