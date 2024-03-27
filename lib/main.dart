@@ -41,11 +41,6 @@ class MyApp extends StatelessWidget {
                 theme: state.themeData,
                 home: HomePage(),
               );
-            } else if (state.themeStatus == ThemeStatus.changedOff) {
-              return MaterialApp(
-                theme: state.themeData,
-                home: HomePage(),
-              );
             }
             return SizedBox.shrink();
           },

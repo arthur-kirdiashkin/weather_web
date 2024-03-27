@@ -2,12 +2,6 @@ import 'dart:convert';
 import 'package:weather_web/features/data/models/weather_days_model/city.dart';
 import 'package:weather_web/features/data/models/weather_days_model/list_element.dart';
 
-WeatherDaysModel weatherDaysModelFromJson(String str) =>
-    WeatherDaysModel.fromJson(json.decode(str));
-
-String weatherDaysModelToJson(WeatherDaysModel data) =>
-    json.encode(data.toJson());
-
 class WeatherDaysModel {
   final City? city;
   final String? cod;

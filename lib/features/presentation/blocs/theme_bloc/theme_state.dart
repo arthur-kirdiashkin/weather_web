@@ -5,7 +5,6 @@ import 'package:weather_web/common/themes/app_themes.dart';
 enum ThemeStatus {
   initial,
   changed,
-  changedOff,
 }
 
 class ThemeState extends Equatable {

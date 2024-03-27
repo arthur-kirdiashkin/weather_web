@@ -53,11 +53,10 @@ class _HomePageState extends State<HomePage> {
                         activeTrackColor: Color.fromRGBO(217, 217, 217, 1),
                         value: isDark,
                         onChanged: (value) async {
-                          prefs = await SharedPreferences.getInstance();
                           setState(() {
                             isDark = !isDark;
                           });
-                          prefs.setBool("is_dark", isDark);
+
                           context
                               .read<ThemeBloc>()
                               .add(ThemeChangedEvent(isDark: isDark));

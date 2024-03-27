@@ -12,8 +12,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   }
 
   _themeChangedEvent(ThemeChangedEvent event, emit) async {
+    
+    final bool setDark = await isSetDark(event.isDark);
+
+
     final bool isDarkTheme = await isDark();
-    //  emit(state.copyWith(weatherStatus: WeatherStatus.loaded, weatherModel: getWeather));
+
     if (isDarkTheme) {
       final myTheme = appThemData[AppThemes.darkTheme];
       emit(state.copyWith(
@@ -23,13 +27,19 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     } else {
       final myTheme = appThemData[AppThemes.lightTheme];
       emit(state.copyWith(
-        themeStatus: ThemeStatus.changedOff,
+        themeStatus: ThemeStatus.changed,
         themeData: myTheme,
       ));
-      // emit(ChangedOffThemeState(themeData: myTheme!));
     }
   }
 }
+
+Future<bool> isSetDark(bool value) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.setBool("is_dark", value);
+}
+
+
 
 Future<bool> isDark() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
