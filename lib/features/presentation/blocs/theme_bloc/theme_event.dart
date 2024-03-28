@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:weather_web/common/themes/app_themes.dart';
 
 abstract class ThemeEvent extends Equatable {}
 

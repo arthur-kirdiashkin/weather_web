@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:weather_web/features/data/models/weather_days_model/weather_days_model.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
 
 enum WeatherDaysStatus { loaded, loading, error, initial }
 
 class WeatherDaysState extends Equatable {
-  final WeatherDaysModel? weatherDaysModel;
+  final WeatherModel? weatherDaysModel;
   final WeatherDaysStatus weatherDaysStatus;
   final String? errorMessage;
 
@@ -14,7 +13,7 @@ class WeatherDaysState extends Equatable {
       this.weatherDaysModel,
       this.errorMessage});
   WeatherDaysState copyWith({
-    final WeatherDaysModel? weatherDaysModel,
+    final WeatherModel? weatherDaysModel,
     final WeatherDaysStatus? weatherDaysStatus,
     final String? errorMessage,
   }) {

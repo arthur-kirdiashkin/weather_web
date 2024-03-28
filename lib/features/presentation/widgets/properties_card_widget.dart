@@ -1,64 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 import 'package:lottie/lottie.dart';
 
-class PropertiesCardWidget extends StatefulWidget {
+class PropertiesCardWidget extends StatelessWidget {
   const PropertiesCardWidget({super.key});
 
   @override
-  State<PropertiesCardWidget> createState() => _PropertiesCardWidgetState();
-}
-
-class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WeatherBloc, WeatherState>(
-      builder: (context, state) {
-        if (state.weatherStatus == WeatherStatus.loading) {
-          return Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0,
-                      spreadRadius: 0.0,
-                      offset: const Offset(10, 10)),
-                ]),
-            width: 780,
-            height: 330,
-            child: Card(
-              color: Theme.of(context).colorScheme.cardColor,
-              shadowColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
-        } else if (state.weatherStatus == WeatherStatus.loaded) {
-          return Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 5.0, // soften the shadow
-                      spreadRadius: 0.0,
-                      offset: const Offset(10, 10)),
-                ]),
-            width: 780,
-            height: 330,
-            child: Card(
-                color: Theme.of(context).colorScheme.cardColor,
-                shadowColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                child: Padding(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              blurRadius: 5.0,
+              spreadRadius: 0.0,
+              offset: const Offset(10, 10)),
+        ],
+      ),
+      constraints: const BoxConstraints(
+        minHeight: 330,
+        minWidth: 780,
+      ),
+      child: Card(
+          color: Theme.of(context).colorScheme.cardColor,
+          shadowColor: Colors.black,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: BlocBuilder<WeatherBloc, WeatherState>(
+            builder: (context, state) {
+              if (state.weatherStatus == WeatherStatus.loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.weatherStatus == WeatherStatus.loaded) {
+                return Padding(
                   padding: const EdgeInsets.only(left: 24, top: 26),
                   child: Row(
                     children: [
@@ -184,7 +164,7 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                                   220,
                                   220) ??
                               Image.network(
-                                'https://rus-traktor.ru/upload/iblock/f74/f74f39dbc9b60954c926d72401adf1cc.jpg',
+                                NOT_IMAGE_URL,
                                 width: 220,
                                 height: 220,
                               ),
@@ -351,34 +331,18 @@ class _PropertiesCardWidgetState extends State<PropertiesCardWidget> {
                       )
                     ],
                   ),
-                )),
-          );
-        } else if (state.weatherStatus == WeatherStatus.error) {
-          return Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
-                  blurRadius: 10.0, // soften the shadow
-                  spreadRadius: 0.0,
-                  offset: const Offset(10, 20)),
-            ]),
-            width: 510,
-            height: 330,
-            child: Card(
-              shadowColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
-              child: const Center(
-                child: Text(
-                  'Ошибка передачи данных',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ),
-            ),
-          );
-        }
-        return const SizedBox.shrink();
-      },
+                );
+              } else if (state.weatherStatus == WeatherStatus.error) {
+                return const Center(
+                  child: Text(
+                    'Ошибка передачи данных',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          )),
     );
   }
 
@@ -394,7 +358,7 @@ Widget? getLottieIcons(String icon, [double width = 60, double height = 60]) {
   switch (icon) {
     case 'Clouds':
       return Lottie.network(
-        'https://lottie.host/baec878d-22f8-4e9e-b06c-fd89532e0da7/zB9f5Ykbbj.json',
+        LOTTIE_IMAGE_CLOUDS,
         width: width,
         height: height,
         animate: true,
@@ -402,7 +366,7 @@ Widget? getLottieIcons(String icon, [double width = 60, double height = 60]) {
       );
     case 'Clear':
       return Lottie.network(
-        'https://lottie.host/ac0f660a-3b35-4fd6-b3b3-a06aa1c3814b/FwMYnXZSY9.json',
+        LOTTIE_IMAGE_CLEAR,
         width: width,
         height: height,
         animate: true,
@@ -410,7 +374,7 @@ Widget? getLottieIcons(String icon, [double width = 60, double height = 60]) {
       );
     case 'Drizzle':
       return Lottie.network(
-        'https://lottie.host/73e1552f-a21e-42fc-94f6-276313ace6d7/LzOgoQEH3b.json',
+        LOTTIE_IMAGE_DRIZZLE,
         width: width,
         height: height,
         animate: true,
@@ -418,7 +382,15 @@ Widget? getLottieIcons(String icon, [double width = 60, double height = 60]) {
       );
     case 'Rain':
       return Lottie.network(
-        'https://lottie.host/69f5fc22-9009-4099-abc1-46c9a567c5ea/cmgYwE9xzw.json',
+        LOTTIE_IMAGE_RAIN,
+        width: width,
+        height: height,
+        animate: true,
+        repeat: true,
+      );
+    case 'Snow':
+      return Lottie.network(
+        LOTTIE_IMAGE_SNOW,
         width: width,
         height: height,
         animate: true,

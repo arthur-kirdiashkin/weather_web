@@ -8,7 +8,7 @@ class Coord {
   });
 
   factory Coord.fromJson(Map<String, dynamic> json) => Coord(
-        lat: json['lat'],
-        lon: json['lon'],
+        lat: json['lat'].toDouble(),
+        lon: json['lon'].toDouble(),
       );
 }

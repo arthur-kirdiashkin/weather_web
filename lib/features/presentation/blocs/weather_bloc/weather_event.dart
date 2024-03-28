@@ -13,3 +13,5 @@ class GetWeatherEvent extends WeatherEvent {
   // TODO: implement props
   List<Object?> get props => [cityName];
 }
+
+

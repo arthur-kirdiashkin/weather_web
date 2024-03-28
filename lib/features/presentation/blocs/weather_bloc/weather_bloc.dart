@@ -6,15 +6,19 @@ import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_sta
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
   WeatherBloc({required this.weatherRepository}) : super(WeatherState()) {
-    on<GetWeatherEvent> (_getWeatherEvent);
+    on<GetWeatherEvent>(_getWeatherEvent);
   }
 
   _getWeatherEvent(GetWeatherEvent event, Emitter<WeatherState> emit) async {
     emit(state.copyWith(weatherStatus: WeatherStatus.loading));
+
     final getWeather = await weatherRepository.getWeather(event.cityName);
-    emit(state.copyWith(weatherStatus: WeatherStatus.loaded, weatherModel: getWeather));
-    if(getWeather == null) {
+
+    if (getWeather == null) {
       return emit(state.copyWith(weatherStatus: WeatherStatus.error));
     }
+
+    emit(state.copyWith(
+        weatherStatus: WeatherStatus.loaded, weatherModel: getWeather));
   }
 }

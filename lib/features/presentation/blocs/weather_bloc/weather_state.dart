@@ -1,7 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
 
-enum WeatherStatus { loaded, loading, error, initial }
+enum WeatherStatus {
+  loaded,
+  loading,
+  error,
+  initial,
+}
 
 class WeatherState extends Equatable {
   final WeatherModel? weatherModel;
@@ -26,5 +31,5 @@ class WeatherState extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [weatherStatus];
+  List<Object?> get props => [weatherStatus, weatherModel, errorMessage];
 }
