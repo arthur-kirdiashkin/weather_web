@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_event.dart';
 import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_state.dart';
-import 'package:weather_web/features/presentation/widgets/methods_widget.dart';
+import 'package:weather_web/features/data/weather_methods.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()

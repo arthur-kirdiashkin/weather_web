@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget.dart';
+import 'package:weather_web/features/presentation/widgets/days_forecast_widget/days_forecast_widget.dart';
 import 'package:weather_web/features/presentation/widgets/hourly_forecast_widget.dart';
 import 'package:weather_web/features/presentation/widgets/name_card_widget.dart';
-import 'package:weather_web/features/presentation/widgets/properties_card_widget.dart';
+import 'package:weather_web/features/presentation/widgets/properties_card_widget/properties_card_widget.dart';
 import 'package:weather_web/features/presentation/widgets/switch_widget.dart';
 import 'package:weather_web/features/presentation/widgets/textfield_widget.dart';
 

@@ -5,8 +5,10 @@ import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget.dart';
+import 'package:weather_web/features/presentation/widgets/days_forecast_widget/days_forecast_widget.dart';
 import 'dart:math' as math;
+
+import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
   const HourlyForecastWidget({super.key});

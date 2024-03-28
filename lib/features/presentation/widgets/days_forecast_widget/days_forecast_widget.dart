@@ -6,6 +6,7 @@ import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_state.dart';
+import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
 
 class DaysForecastWidget extends StatelessWidget {
   const DaysForecastWidget({super.key});
@@ -119,37 +120,4 @@ class DaysForecastWidget extends StatelessWidget {
   }
 }
 
-Widget? getIcons(String icon, [double width = 60, double height = 60]) {
-  switch (icon) {
-    case 'Clouds':
-      return SvgPicture.asset(
-        'assets/icons_two/cloudy.svg',
-        width: width,
-        height: height,
-      );
-    case 'Clear':
-      return SvgPicture.asset(
-        'assets/icons_two/sun.svg',
-        width: width,
-        height: height,
-      );
-    case 'Drizzle':
-      return SvgPicture.asset(
-        'assets/icons_two/drizzle.svg',
-        width: width,
-        height: height,
-      );
-    case 'Rain':
-      return SvgPicture.asset(
-        'assets/icons_two/rain.svg',
-        width: width,
-        height: height,
-      );
-    case 'Snow':
-      return SvgPicture.asset(
-        'assets/icons_two/snow.svg',
-        width: width,
-        height: height,
-      );
-  }
-}
+

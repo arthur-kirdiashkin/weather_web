@@ -1,6 +1,6 @@
 import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
-import 'package:weather_web/features/presentation/widgets/methods_widget.dart';
+import 'package:weather_web/features/data/weather_methods.dart';
 
 abstract class WeatherRepository {
   Future<WeatherModel?> getWeather(String cityName);
