@@ -71,8 +71,19 @@ class HourlyForecastWidget extends StatelessWidget {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   stops: const [0, 1],
-                                  colors: state.weatherModel!.list![index].dt! <
-                                          state.weatherModel!.list![3].dt!
+                                  colors: double.parse(DateFormat.H().format(
+                                                  DateTime.fromMillisecondsSinceEpoch(state
+                                                          .weatherModel!
+                                                          .list![index]
+                                                          .dt! *
+                                                      1000))) <=
+                                              18.0 &&
+                                          double.parse(DateFormat.H().format(
+                                                  DateTime.fromMillisecondsSinceEpoch(state
+                                                          .weatherModel!
+                                                          .list![index]
+                                                          .dt! *
+                                                      1000))) >= 6.0
                                       ? <Color>[
                                           Theme.of(context)
                                               .colorScheme
