@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_web/common/themes/app_themes.dart';
 
 enum ThemeStatus {
   initial,
@@ -9,17 +8,21 @@ enum ThemeStatus {
 
 class ThemeState extends Equatable {
   final ThemeData? themeData;
-  final ThemeStatus themeStatus;
+  final ThemeStatus? themeStatus;
+  final bool? isDark;
 
   ThemeState({
+    this.isDark = false,
     this.themeData,
     this.themeStatus = ThemeStatus.initial,
   });
   ThemeState copyWith({
     final ThemeData? themeData,
     final ThemeStatus? themeStatus,
+    final bool? isDark,
   }) {
     return ThemeState(
+      isDark: isDark ?? this.isDark,
       themeData: themeData ?? this.themeData,
       themeStatus: themeStatus ?? this.themeStatus,
     );
@@ -27,5 +30,9 @@ class ThemeState extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [themeData, themeStatus];
+  List<Object?> get props => [
+        themeData,
+        themeStatus,
+        isDark,
+      ];
 }

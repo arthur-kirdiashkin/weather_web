@@ -1,10 +1,9 @@
-
 import 'package:weather_web/features/data/models/weather_model/city.dart';
 import 'package:weather_web/features/data/models/weather_model/list_model.dart';
 
 class WeatherModel {
   final String? cod;
-  final int? message;
+  final double? message;
   final int? cnt;
   final List<ListModel>? list;
   final City? city;
@@ -19,7 +18,7 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) => WeatherModel(
         cod: json['cod'],
-        message: json['message'],
+        message: json['message'].toDouble(),
         cnt: json['cnt'],
         list: List<ListModel>.from(
             json["list"].map((x) => ListModel.fromJson(x))),

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_bloc.dart';
@@ -15,8 +14,8 @@ import 'package:window_manager/window_manager.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependency();
-  await windowManager.ensureInitialized(); 
-  if(Platform.isWindows) {
+  await windowManager.ensureInitialized();
+  if (Platform.isWindows) {
     WindowManager.instance.setMinimumSize(const Size(1580, 1000));
   }
   runApp(const MyApp());
@@ -30,26 +29,19 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => locator<ThemeBloc>()),
           BlocProvider(
-              create: (context) => locator<WeatherDaysBloc>()
-                ..add(GetWeatherDaysEvent(cityName: 'London'))),
+            create: (context) => locator<WeatherDaysBloc>()
+              ..add(GetWeatherDaysEvent(cityName: 'London')),
+          ),
           BlocProvider(
               create: (context) => locator<WeatherBloc>()
                 ..add(GetWeatherEvent(cityName: 'London')))
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
-            if (state.themeStatus == ThemeStatus.initial) {
-              return MaterialApp(
-                theme: state.themeData,
-                home: HomePage(),
-              );
-            } else if (state.themeStatus == ThemeStatus.changed) {
-              return MaterialApp(
-                theme: state.themeData,
-                home: HomePage(),
-              );
-            }
-            return SizedBox.shrink();
+            return MaterialApp(
+              theme: state.themeData,
+              home: const HomePage(),
+            );
           },
         ));
   }

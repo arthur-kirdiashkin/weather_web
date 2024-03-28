@@ -5,15 +5,10 @@ import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_eve
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_event.dart';
 
-class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget({super.key});
-
-  @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
-}
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
+class TextFieldWidget extends StatelessWidget {
   final cityController = TextEditingController();
+  TextFieldWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,6 +23,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           context
               .read<WeatherDaysBloc>()
               .add(GetWeatherDaysEvent(cityName: cityController.text));
+          cityController.clear();
         },
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.only(left: 20),
