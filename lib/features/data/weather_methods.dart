@@ -5,7 +5,7 @@ import 'dart:convert';
 
 Future<void> isSetDark(bool value) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-   prefs.setBool("is_dark", value);
+  prefs.setBool("is_dark", value);
 }
 
 Future<bool> isGetDark() async {
@@ -14,26 +14,26 @@ Future<bool> isGetDark() async {
 }
 
 Future<WeatherModel?> getWeatherPath(String cityName, String path) async {
-    final parameters = {
-      'appid': '1369dd6b5ae78fc9952261ab9aa236b4',
-      'q': cityName,
-      'units': 'metric',
-      'cnt': '5',
-    };
-    final uri = Uri.https(
-      'api.openweathermap.org',
-      path,
-      parameters,
-    );
+  final parameters = {
+    'appid': '1369dd6b5ae78fc9952261ab9aa236b4',
+    'q': cityName,
+    'units': 'metric',
+    'cnt': '5',
+  };
+  final uri = Uri.https(
+    'api.openweathermap.org',
+    path,
+    parameters,
+  );
 
-    final response = await http.get(uri);
-    try {
-      if (response.statusCode == 200) {
-        return WeatherModel.fromJson(json.decode(response.body));
-      }
-    } catch (e) {
-      throw Exception(
-        e.toString(),
-      );
+  final response = await http.get(uri);
+  try {
+    if (response.statusCode == 200) {
+      return WeatherModel.fromJson(json.decode(response.body));
     }
+  } catch (e) {
+    throw Exception(
+      e.toString(),
+    );
   }
+}

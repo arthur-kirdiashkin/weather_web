@@ -11,7 +11,7 @@ import 'dart:math' as math;
 import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
-  const HourlyForecastWidget({super.key});
+  HourlyForecastWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +85,8 @@ class HourlyForecastWidget extends StatelessWidget {
                                                           .weatherModel!
                                                           .list![index]
                                                           .dt! *
-                                                      1000))) >= 6.0
+                                                      1000))) >=
+                                              6.0
                                       ? <Color>[
                                           Theme.of(context)
                                               .colorScheme

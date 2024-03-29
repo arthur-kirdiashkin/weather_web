@@ -32,4 +32,5 @@ class Main {
         humidity: json['humidity'],
         tempKf: json['temp_kf'].toDouble(),
       );
+      
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_state.dart';
+import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
+import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
+
 
 class DaysForecastWidget extends StatelessWidget {
   const DaysForecastWidget({super.key});
@@ -34,13 +34,13 @@ class DaysForecastWidget extends StatelessWidget {
           shadowColor: Colors.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          child: BlocBuilder<WeatherDaysBloc, WeatherDaysState>(
+          child: BlocBuilder<WeatherBloc, WeatherState>(
             builder: (context, state) {
               if (state.weatherDaysStatus == WeatherDaysStatus.loading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state.weatherDaysStatus == WeatherDaysStatus.loaded) {
+              } else if (state.weatherDaysStatus == WeatherDaysStatus.loadedDays) {
                 return Padding(
                   padding: const EdgeInsets.only(
                     left: 30,
@@ -64,7 +64,7 @@ class DaysForecastWidget extends StatelessWidget {
                       ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: state.weatherDaysModel?.list!.length,
+                        itemCount: state.weatherDaysModel!.list!.length,
                         itemBuilder: (context, index) {
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

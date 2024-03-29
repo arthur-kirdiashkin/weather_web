@@ -5,8 +5,6 @@ import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_bloc.da
 import 'package:weather_web/features/presentation/blocs/theme_bloc/theme_state.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_event.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_event.dart';
 import 'package:weather_web/features/presentation/pages/home_page.dart';
 import 'package:weather_web/locator.dart';
 import 'package:window_manager/window_manager.dart';
@@ -29,12 +27,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => locator<ThemeBloc>()),
           BlocProvider(
-            create: (context) => locator<WeatherDaysBloc>()
-              ..add(GetWeatherDaysEvent(cityName: 'London')),
-          ),
-          BlocProvider(
-              create: (context) => locator<WeatherBloc>()
-                ..add(GetWeatherEvent(cityName: 'London')))
+            create: (context) => locator<WeatherBloc>()
+              ..add(GetDaysWeatherEvent(cityName: 'London'))
+              ..add(GetWeatherEvent(cityName: 'London')),
+          )
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {

@@ -14,4 +14,14 @@ class GetWeatherEvent extends WeatherEvent {
   List<Object?> get props => [cityName];
 }
 
+class GetDaysWeatherEvent extends WeatherEvent {
+  final String cityName;
 
+  GetDaysWeatherEvent({
+    required this.cityName,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [cityName];
+}

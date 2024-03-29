@@ -35,6 +35,13 @@ class NameCardWidget extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (state.weatherStatus == WeatherStatus.loaded) {
+                final time = DateFormat.Hm().format(DateTime.now().add(Duration(
+                    seconds: state.weatherModel!.city!.timezone! -
+                        DateTime.now().timeZoneOffset.inSeconds)));
+                final weekAndDay = DateFormat('EEEE, d MMM').format(
+                    DateTime.now().add(Duration(
+                        seconds: state.weatherModel!.city!.timezone! -
+                            DateTime.now().timeZoneOffset.inSeconds)));
                 return Column(
                   children: [
                     const SizedBox(
@@ -52,10 +59,7 @@ class NameCardWidget extends StatelessWidget {
                       height: 40,
                     ),
                     Text(
-                      DateFormat.Hm().format(DateTime.now().add(Duration(
-                        seconds: state.weatherModel!.city!.timezone! -
-                            DateTime.now().timeZoneOffset.inSeconds,
-                      ))),
+                      time,
                       style: const TextStyle(
                         height: 1,
                         fontFamily: 'Popins',
@@ -64,11 +68,7 @@ class NameCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DateFormat('EEEE, d MMM')
-                          .format(DateTime.now().add(Duration(
-                        seconds: state.weatherModel!.city!.timezone! -
-                            DateTime.now().timeZoneOffset.inSeconds,
-                      ))),
+                      weekAndDay,
                       style: const TextStyle(
                         fontFamily: 'Popins',
                         fontWeight: FontWeight.w400,

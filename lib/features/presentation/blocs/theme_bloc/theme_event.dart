@@ -13,3 +13,4 @@ class ThemeChangedEvent extends ThemeEvent {
   // TODO: implement props
   List<Object?> get props => [isDark];
 }
+

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_event.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_bloc.dart';
-import 'package:weather_web/features/presentation/blocs/weather_days_bloc/weather_days_event.dart';
+
 
 class TextFieldWidget extends StatelessWidget {
   final cityController = TextEditingController();
@@ -21,8 +20,8 @@ class TextFieldWidget extends StatelessWidget {
               .read<WeatherBloc>()
               .add(GetWeatherEvent(cityName: cityController.text));
           context
-              .read<WeatherDaysBloc>()
-              .add(GetWeatherDaysEvent(cityName: cityController.text));
+              .read<WeatherBloc>()
+              .add(GetDaysWeatherEvent(cityName: cityController.text));
           cityController.clear();
         },
         decoration: InputDecoration(
