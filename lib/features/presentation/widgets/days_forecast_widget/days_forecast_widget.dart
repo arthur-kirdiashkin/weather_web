@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
-
+import 'package:weather_web/features/presentation/utils/methods_utils.dart';
 import '../../utils/data_format_utils.dart';
 
 class DaysForecastWidget extends StatelessWidget {
@@ -66,21 +64,21 @@ class DaysForecastWidget extends StatelessWidget {
                       ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: state.weatherDaysModel!.list!.length,
+                        itemCount: state.listModelFiveDays.length,
                         itemBuilder: (context, index) {
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              getIcons(state.weatherDaysModel!.list![index]
-                                      .weather![0].main!) ??
+                              MethodUtils.getIcons(
+                                      state.listModelFiveDays[index].weather![0].main!) ??
                                   Image.network(
                                     NOT_IMAGE_URL,
                                     width: 60,
                                     height: 60,
                                   ),
                               Text(
-                                '${state.weatherDaysModel!.list![index].temp!.day!.toInt()}°C',
+                                '${state.listModelFiveDays[index].temp!.day!.toInt()}°C',
                                 style: const TextStyle(
                                   fontFamily: 'Popins',
                                   fontWeight: FontWeight.w700,

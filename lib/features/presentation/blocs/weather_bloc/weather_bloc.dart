@@ -20,10 +20,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     }
 
     emit(state.copyWith(
-        weatherStatus: WeatherStatus.loaded, weatherModel: getWeather));
+      weatherStatus: WeatherStatus.loaded,
+      weatherModel: getWeather,
+      listModelOneDay: getWeather.list,
+    ));
   }
 
-  _getDaysWeatherEvent(GetDaysWeatherEvent event, Emitter<WeatherState> emit) async {
+  _getDaysWeatherEvent(
+      GetDaysWeatherEvent event, Emitter<WeatherState> emit) async {
     emit(state.copyWith(weatherDaysStatus: WeatherDaysStatus.loading));
 
     final weatherDays = await weatherRepository.getDaysWeather(event.cityName);
@@ -35,6 +39,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(state.copyWith(
       weatherDaysStatus: WeatherDaysStatus.loadedDays,
       weatherDaysModel: weatherDays,
+      listModelFiveDays: weatherDays.list,
     ));
   }
 }

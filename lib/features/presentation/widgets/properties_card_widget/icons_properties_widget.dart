@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
-import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
+import 'package:weather_web/features/data/models/weather_model/list_model.dart';
+
 
 class IconsPropertiesWidget extends StatelessWidget {
-  final WeatherModel weatherModel;
+  final List<ListModel> list;
 
-  const IconsPropertiesWidget({super.key, required this.weatherModel});
+  const IconsPropertiesWidget({super.key, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 18,
                 ),
                 Text(
-                  '${weatherModel.list![0].main!.humidity}%',
+                  '${list[0].main!.humidity}%',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -56,7 +57,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${weatherModel.list![0].wind!.speed!.ceil()}km/h',
+                  '${list[0].wind!.speed!.ceil()}km/h',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -93,7 +94,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 17,
                 ),
                 Text(
-                  '${weatherModel.list![0].main!.pressure}hPa',
+                  '${list[0].main!.pressure}hPa',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -126,7 +127,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${weatherModel.list![0].main!.seaLevel}',
+                  '${list[0].main!.seaLevel}',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,

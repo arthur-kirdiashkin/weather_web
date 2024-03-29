@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget/days_forecast_widget.dart';
-import 'dart:math' as math;
-
-import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
+import 'package:weather_web/features/presentation/utils/methods_utils.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
-  HourlyForecastWidget({super.key});
+  const HourlyForecastWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +62,7 @@ class HourlyForecastWidget extends StatelessWidget {
                         ),
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemCount: state.weatherModel!.list!.length,
+                        itemCount: state.listModelOneDay.length,
                         itemBuilder: (context, index) {
                           return Container(
                             decoration: BoxDecoration(
@@ -115,9 +111,9 @@ class HourlyForecastWidget extends StatelessWidget {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                getIcons(
-                                        state.weatherModel!.list![index]
-                                            .weather![0].main!,
+                                MethodUtils.getIcons(
+                                        state.listModelOneDay[index].weather![0]
+                                            .main!,
                                         80,
                                         80) ??
                                     Image.network(
@@ -129,20 +125,20 @@ class HourlyForecastWidget extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  '${state.weatherModel!.list![index].main!.temp!.toInt()}°C',
+                                  '${state.listModelOneDay[index].main!.temp!.toInt()}°C',
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20,
                                   ),
                                 ),
-                                getWindIcons(state
-                                    .weatherModel!.list![index].wind!.deg!)!,
+                                MethodUtils.getWindIcons(
+                                    state.listModelOneDay[index].wind!.deg!)!,
                                 const SizedBox(
                                   height: 2,
                                 ),
                                 Text(
-                                  '${state.weatherModel!.list![index].wind!.speed!.toInt()}km/h',
+                                  '${state.listModelOneDay[index].wind!.speed!.toInt()}km/h',
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
@@ -174,19 +170,5 @@ class HourlyForecastWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Widget? getWindIcons(int wind, [double width = 60, double height = 60]) {
-  if (0 < wind && wind < 90) {
-    return Image.asset('assets/icons_two/navigation 1.png');
-  } else if (90 < wind && wind < 180) {
-    return Transform.rotate(
-        angle: 30 * math.pi / 180,
-        child: Image.asset('assets/icons_two/navigation 1.png'));
-  } else {
-    return Transform.rotate(
-        angle: 330 * math.pi / 180,
-        child: Image.asset('assets/icons_two/navigation 1.png'));
   }
 }

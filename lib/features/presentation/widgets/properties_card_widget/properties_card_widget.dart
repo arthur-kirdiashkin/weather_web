@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
-import 'package:lottie/lottie.dart';
 import 'package:weather_web/features/presentation/widgets/properties_card_widget/icons_properties_widget.dart';
 import 'package:weather_web/features/presentation/widgets/properties_card_widget/main_icon_properties_widget.dart';
 import 'package:weather_web/features/presentation/widgets/properties_card_widget/temperature_properties_widget.dart';
@@ -52,13 +50,13 @@ class PropertiesCardWidget extends StatelessWidget {
                         width: 60,
                       ),
                       MainIconPropertiesWidget(
-                        weatherModel: state.weatherModel!,
+                        list: state.listModelOneDay,
                       ),
                       const SizedBox(
                         width: 40,
                       ),
                       IconsPropertiesWidget(
-                        weatherModel: state.weatherModel!,
+                        list: state.listModelOneDay,
                       ),
                     ],
                   ),
