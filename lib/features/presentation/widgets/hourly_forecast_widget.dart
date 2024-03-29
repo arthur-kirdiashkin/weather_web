@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_web/common/constants.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
+import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 import 'package:weather_web/features/presentation/widgets/days_forecast_widget/days_forecast_widget.dart';
@@ -73,20 +74,8 @@ class HourlyForecastWidget extends StatelessWidget {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   stops: const [0, 1],
-                                  colors: double.parse(DateFormat.H().format(
-                                                  DateTime.fromMillisecondsSinceEpoch(state
-                                                          .weatherModel!
-                                                          .list![index]
-                                                          .dt! *
-                                                      1000))) <=
-                                              18.0 &&
-                                          double.parse(DateFormat.H().format(
-                                                  DateTime.fromMillisecondsSinceEpoch(state
-                                                          .weatherModel!
-                                                          .list![index]
-                                                          .dt! *
-                                                      1000))) >=
-                                              6.0
+                                  colors: (DataFormatUtils.colorsCard(
+                                          index, state.weatherModel!))
                                       ? <Color>[
                                           Theme.of(context)
                                               .colorScheme
@@ -115,10 +104,8 @@ class HourlyForecastWidget extends StatelessWidget {
                                   height: 10,
                                 ),
                                 Text(
-                                  DateFormat.Hm().format(
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                          state.weatherModel!.list![index].dt! *
-                                              1000)),
+                                  DataFormatUtils.timeInHours(
+                                      index, state.weatherModel!),
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,

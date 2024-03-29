@@ -7,6 +7,7 @@ import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_blo
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 import 'package:weather_web/features/presentation/widgets/days_forecast_widget/get_icons.dart';
 
+import '../../utils/data_format_utils.dart';
 
 class DaysForecastWidget extends StatelessWidget {
   const DaysForecastWidget({super.key});
@@ -40,7 +41,8 @@ class DaysForecastWidget extends StatelessWidget {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state.weatherDaysStatus == WeatherDaysStatus.loadedDays) {
+              } else if (state.weatherDaysStatus ==
+                  WeatherDaysStatus.loadedDays) {
                 return Padding(
                   padding: const EdgeInsets.only(
                     left: 30,
@@ -86,12 +88,8 @@ class DaysForecastWidget extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                DateFormat('EEEE, d MMM').format(
-                                    DateTime.fromMillisecondsSinceEpoch(state
-                                            .weatherDaysModel!
-                                            .list![index]
-                                            .dt! *
-                                        1000)),
+                                DataFormatUtils.weekAndDayFive(
+                                    index, state.weatherDaysModel!),
                                 style: const TextStyle(
                                   fontFamily: 'Popins',
                                   fontWeight: FontWeight.w700,
@@ -119,5 +117,3 @@ class DaysForecastWidget extends StatelessWidget {
     );
   }
 }
-
-

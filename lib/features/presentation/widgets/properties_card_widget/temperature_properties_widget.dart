@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
+import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 
 class TemperaturePropertiesWidget extends StatelessWidget {
   final WeatherModel weatherModel;
@@ -69,7 +70,8 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                       fontSize: 20),
                 ),
                 Text(
-                  '${getClockInUtcPlus3Hours(weatherModel.city!.sunrise!)}',
+                  DataFormatUtils.getClockInUtcPlus3Hours(
+                      weatherModel.city!.sunrise!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,
@@ -102,7 +104,8 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                       fontSize: 20),
                 ),
                 Text(
-                  '${getClockInUtcPlus3Hours(weatherModel!.city!.sunset!)}',
+                  DataFormatUtils.getClockInUtcPlus3Hours(
+                      weatherModel.city!.sunset!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,
@@ -115,11 +118,4 @@ class TemperaturePropertiesWidget extends StatelessWidget {
       ],
     );
   }
-}
-
-String? getClockInUtcPlus3Hours(int timeSinceEpochInSec) {
-  final time = DateTime.fromMillisecondsSinceEpoch(timeSinceEpochInSec * 1000,
-          isUtc: true)
-      .add(const Duration(hours: 3));
-  return '${time.hour}:${time.second} AM';
 }

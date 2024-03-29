@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
+import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_state.dart';
 
@@ -35,13 +36,6 @@ class NameCardWidget extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (state.weatherStatus == WeatherStatus.loaded) {
-                final time = DateFormat.Hm().format(DateTime.now().add(Duration(
-                    seconds: state.weatherModel!.city!.timezone! -
-                        DateTime.now().timeZoneOffset.inSeconds)));
-                final weekAndDay = DateFormat('EEEE, d MMM').format(
-                    DateTime.now().add(Duration(
-                        seconds: state.weatherModel!.city!.timezone! -
-                            DateTime.now().timeZoneOffset.inSeconds)));
                 return Column(
                   children: [
                     const SizedBox(
@@ -59,7 +53,7 @@ class NameCardWidget extends StatelessWidget {
                       height: 40,
                     ),
                     Text(
-                      time,
+                      DataFormatUtils.getTime(state.weatherModel!),
                       style: const TextStyle(
                         height: 1,
                         fontFamily: 'Popins',
@@ -68,7 +62,7 @@ class NameCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      weekAndDay,
+                      DataFormatUtils.weekAndDay(state.weatherModel!),
                       style: const TextStyle(
                         fontFamily: 'Popins',
                         fontWeight: FontWeight.w400,
