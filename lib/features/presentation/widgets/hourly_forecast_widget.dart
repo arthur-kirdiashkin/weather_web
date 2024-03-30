@@ -71,7 +71,7 @@ class HourlyForecastWidget extends StatelessWidget {
                                   end: Alignment.bottomCenter,
                                   stops: const [0, 1],
                                   colors: (DataFormatUtils.colorsCard(
-                                          index, state.weatherModel!))
+                                          state.listModelOneDay[index].dt!))
                                       ? <Color>[
                                           Theme.of(context)
                                               .colorScheme
@@ -101,7 +101,7 @@ class HourlyForecastWidget extends StatelessWidget {
                                 ),
                                 Text(
                                   DataFormatUtils.timeInHours(
-                                      index, state.weatherModel!),
+                                      state.listModelOneDay[index].dt!),
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
@@ -112,8 +112,7 @@ class HourlyForecastWidget extends StatelessWidget {
                                   height: 5,
                                 ),
                                 MethodUtils.getIcons(
-                                        state.listModelOneDay[index].weather![0]
-                                            .main!,
+                                        state.listWeather[index]!.first.main!,
                                         80,
                                         80) ??
                                     Image.network(
@@ -125,7 +124,7 @@ class HourlyForecastWidget extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  '${state.listModelOneDay[index].main!.temp!.toInt()}°C',
+                                  '${state.listMain[index]!.temp!.toInt()}°C',
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,
@@ -133,12 +132,12 @@ class HourlyForecastWidget extends StatelessWidget {
                                   ),
                                 ),
                                 MethodUtils.getWindIcons(
-                                    state.listModelOneDay[index].wind!.deg!)!,
+                                    state.listWindForOneDay[index]!.deg!)!,
                                 const SizedBox(
                                   height: 2,
                                 ),
                                 Text(
-                                  '${state.listModelOneDay[index].wind!.speed!.toInt()}km/h',
+                                  '${state.listWindForOneDay[index]!.speed!.ceil()}km/h',
                                   style: const TextStyle(
                                     fontFamily: 'Popins',
                                     fontWeight: FontWeight.w700,

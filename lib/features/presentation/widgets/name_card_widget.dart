@@ -42,7 +42,7 @@ class NameCardWidget extends StatelessWidget {
                       height: 54,
                     ),
                     Text(
-                      state.weatherModel!.city!.name!,
+                      state.city!.name!,
                       style: const TextStyle(
                         fontFamily: 'Popins',
                         fontWeight: FontWeight.w700,
@@ -53,7 +53,8 @@ class NameCardWidget extends StatelessWidget {
                       height: 40,
                     ),
                     Text(
-                      DataFormatUtils.getTime(state.weatherModel!),
+                      DataFormatUtils.getTime(
+                          state.city!.timezone!),
                       style: const TextStyle(
                         height: 1,
                         fontFamily: 'Popins',
@@ -62,7 +63,8 @@ class NameCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DataFormatUtils.weekAndDay(state.weatherModel!),
+                      DataFormatUtils.weekAndDay(
+                          state.city!.timezone!),
                       style: const TextStyle(
                         fontFamily: 'Popins',
                         fontWeight: FontWeight.w400,

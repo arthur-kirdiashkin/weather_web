@@ -44,19 +44,21 @@ class PropertiesCardWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       TemperaturePropertiesWidget(
-                        weatherModel: state.weatherModel!,
+                        listMain: state.listMain,
+                        city: state.city!,
                       ),
                       const SizedBox(
                         width: 60,
                       ),
                       MainIconPropertiesWidget(
-                        list: state.listModelOneDay,
+                        main: state.listWeather.first!.first.main!,
                       ),
                       const SizedBox(
                         width: 40,
                       ),
                       IconsPropertiesWidget(
-                        list: state.listModelOneDay,
+                        listWind: state.listWindForOneDay,
+                        listMain: state.listMain,
                       ),
                     ],
                   ),

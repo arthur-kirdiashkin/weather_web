@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
+import 'package:weather_web/features/data/models/weather_model/city.dart';
+import 'package:weather_web/features/data/models/weather_model/main.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
 import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 
 class TemperaturePropertiesWidget extends StatelessWidget {
-  final WeatherModel weatherModel;
+  final List<Main?> listMain;
+  final City city;
 
-  const TemperaturePropertiesWidget({super.key, required this.weatherModel});
+  const TemperaturePropertiesWidget(
+      {super.key, required this.listMain, required this.city});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          '${weatherModel.list![0].main!.temp!.ceil()}°C',
+          '${listMain.first!.temp!.ceil()}°C',
           style: const TextStyle(
             height: 1,
             fontFamily: 'Popins',
@@ -31,7 +35,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 20)),
             TextSpan(
-                text: ' ${weatherModel!.list![0].main!.feelsLike!.ceil()}',
+                text: ' ${listMain.first!.feelsLike!.ceil()}',
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.iconColor,
                     fontFamily: 'Popins',
@@ -71,7 +75,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                 ),
                 Text(
                   DataFormatUtils.getClockInUtcPlus3Hours(
-                      weatherModel.city!.sunrise!),
+                      city.sunrise!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,
@@ -105,7 +109,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                 ),
                 Text(
                   DataFormatUtils.getClockInUtcPlus3Hours(
-                      weatherModel.city!.sunset!),
+                      city.sunset!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,

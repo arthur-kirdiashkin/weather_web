@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/data/models/weather_model/list_model.dart';
-
+import 'package:weather_web/features/data/models/weather_model/main.dart';
+import 'package:weather_web/features/data/models/weather_model/wind.dart';
 
 class IconsPropertiesWidget extends StatelessWidget {
-  final List<ListModel> list;
+  final List<Main?> listMain;
+  final List<Wind?> listWind;
 
-  const IconsPropertiesWidget({super.key, required this.list});
+  const IconsPropertiesWidget({
+    super.key,
+    required this.listMain,
+    required this.listWind,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 18,
                 ),
                 Text(
-                  '${list[0].main!.humidity}%',
+                  '${listMain.first!.humidity}%',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -57,7 +63,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${list[0].wind!.speed!.ceil()}km/h',
+                  '${listWind.first!.speed!.ceil()}km/h',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -94,7 +100,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 17,
                 ),
                 Text(
-                  '${list[0].main!.pressure}hPa',
+                  '${listMain.first!.pressure}hPa',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -127,7 +133,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${list[0].main!.seaLevel}',
+                  '${listMain.first!.seaLevel}',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,

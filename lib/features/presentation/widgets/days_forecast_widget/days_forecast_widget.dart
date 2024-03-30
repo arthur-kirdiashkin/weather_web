@@ -71,14 +71,16 @@ class DaysForecastWidget extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               MethodUtils.getIcons(
-                                      state.listModelFiveDays[index].weather![0].main!) ??
+                                    state.listModelFiveDays[index].weather!
+                                        .first.main!,
+                                  ) ??
                                   Image.network(
                                     NOT_IMAGE_URL,
                                     width: 60,
                                     height: 60,
                                   ),
                               Text(
-                                '${state.listModelFiveDays[index].temp!.day!.toInt()}°C',
+                                '${state.listTemp[index]!.day!.toInt()}°C',
                                 style: const TextStyle(
                                   fontFamily: 'Popins',
                                   fontWeight: FontWeight.w700,
@@ -87,7 +89,7 @@ class DaysForecastWidget extends StatelessWidget {
                               ),
                               Text(
                                 DataFormatUtils.weekAndDayFive(
-                                    index, state.weatherDaysModel!),
+                                    state.listModelFiveDays[index].dt!),
                                 style: const TextStyle(
                                   fontFamily: 'Popins',
                                   fontWeight: FontWeight.w700,
@@ -101,15 +103,13 @@ class DaysForecastWidget extends StatelessWidget {
                     ],
                   ),
                 );
-              } else if (state.weatherDaysStatus == WeatherDaysStatus.error) {
-                return const Center(
-                  child: Text(
-                    'Ошибка передачи данных',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                );
               }
-              return const SizedBox.shrink();
+              return const Center(
+                child: Text(
+                  'Ошибка передачи данных',
+                  style: TextStyle(fontSize: 30),
+                ),
+              );
             },
           )),
     );

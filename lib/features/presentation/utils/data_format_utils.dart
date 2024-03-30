@@ -2,41 +2,36 @@ import 'package:intl/intl.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
 
 class DataFormatUtils {
-  static bool colorsCard(int index, WeatherModel weatherModel) {
-    if (double.parse(dateFormatMilliSeconds(
-                DateFormat.H(), weatherModel.list![index].dt!)) <=
-            18.0 &&
-        double.parse(dateFormatMilliSeconds(
-                DateFormat.H(), weatherModel.list![index].dt!)) >=
-            6.0) {
+  static bool colorsCard(int dt) {
+    if (doubleParse(DateFormat.H(), dt) <= 18.0 &&
+        doubleParse(DateFormat.H(), dt) >= 6.0) {
       return true;
     } else {
       return false;
     }
   }
 
-  static String getTime(WeatherModel weatherModel) {
-    String time = dateFormatSeconds(DateFormat.Hm(),
-        weatherModel.city!.timezone! - DateTime.now().timeZoneOffset.inSeconds);
+  static String getTime(int timeZone) {
+    String time = dateFormatSeconds(
+        DateFormat.Hm(), timeZone - DateTime.now().timeZoneOffset.inSeconds);
 
     return time;
   }
 
-  static String weekAndDay(WeatherModel weatherModel) {
+  static String weekAndDay(int timeZone) {
     String weekAndDay = dateFormatSeconds(DateFormat('EEEE, d MMM'),
-        weatherModel.city!.timezone! - DateTime.now().timeZoneOffset.inSeconds);
+        timeZone - DateTime.now().timeZoneOffset.inSeconds);
     return weekAndDay;
   }
 
-  static String weekAndDayFive(int index, WeatherModel weatherDaysModel) {
-    String weekAndDayFive = dateFormatMilliSeconds(
-        DateFormat('EEEE, d MMM'), weatherDaysModel.list![index].dt!);
+  static String weekAndDayFive(int dt) {
+    String weekAndDayFive =
+        dateFormatMilliSeconds(DateFormat('EEEE, d MMM'), dt);
     return weekAndDayFive;
   }
 
-  static String timeInHours(int index, WeatherModel weatherModel) {
-    String timeInHours =
-        dateFormatMilliSeconds(DateFormat.Hm(), weatherModel.list![index].dt!);
+  static String timeInHours(int dt) {
+    String timeInHours = dateFormatMilliSecondsHours(DateFormat.Hm(), dt);
 
     return timeInHours;
   }
@@ -50,11 +45,27 @@ class DataFormatUtils {
 
   static String dateFormatMilliSeconds(
       DateFormat dateFormat, int milliseconds) {
-    return dateFormat
-        .format(DateTime.fromMillisecondsSinceEpoch(milliseconds * 1000));
+    return dateFormat.format(DateTime.fromMillisecondsSinceEpoch(
+      milliseconds * 1000,
+    ));
+  }
+
+  static String dateFormatMilliSecondsHours(
+      DateFormat dateFormat, int milliseconds) {
+    return dateFormat.format(
+      DateTime.fromMillisecondsSinceEpoch(
+        milliseconds * 1000,
+      ).subtract(
+        Duration(hours: 3),
+      ),
+    );
   }
 
   static String dateFormatSeconds(DateFormat dateFormat, int seconds) {
     return dateFormat.format(DateTime.now().add(Duration(seconds: seconds)));
+  }
+
+  static double doubleParse(DateFormat dateFormat, int milliseconds) {
+    return double.parse(dateFormatMilliSeconds(dateFormat, milliseconds));
   }
 }
