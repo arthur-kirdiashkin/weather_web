@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:weather_web/features/data/models/weather_model/city.dart';
-import 'package:weather_web/features/data/models/weather_model/list_model.dart';
-import 'package:weather_web/features/data/models/weather_model/main.dart';
+import 'package:weather_web/features/data/models/weather_model/list_weather_data.dart';
+import 'package:weather_web/features/data/models/weather_model/general_data.dart';
 import 'package:weather_web/features/data/models/weather_model/temp.dart';
 import 'package:weather_web/features/data/models/weather_model/weather.dart';
 import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
@@ -23,27 +23,35 @@ enum WeatherDaysStatus {
 }
 
 class WeatherState extends Equatable {
-  final List<ListModel> listModelOneDay;
-  final List<ListModel> listModelFiveDays;
+  final List<ListWeatherData> listModelOneDay;
+  final List<ListWeatherData> listModelFiveDays;
   final WeatherModel? weatherModel;
   final WeatherModel? weatherDaysModel;
   final WeatherStatus weatherStatus;
   final WeatherDaysStatus weatherDaysStatus;
   final String? errorMessage;
-  final List<Main?> listMain;
+  final List<GeneralData?> listGeneralData;
   final City? city;
   final int? dt;
   final List<Wind?> listWindForOneDay;
-  final List<List<Weather>?> listWeather;
+  final List<Weather?> listWeatherOneDay;
+  final List<Weather?> listWeatherFiveDays;
   final List<Temp?> listTemp;
+  final GeneralData? currentData;
+  final Wind? currentWindSpeed;
+  final Weather? currentDesciptionWeather;
 
   const WeatherState({
+    this.currentDesciptionWeather,
+    this.currentWindSpeed,
+    this.currentData,
+    this.listWeatherFiveDays = const [],
     this.listTemp = const [],
-    this.listWeather = const [],
+    this.listWeatherOneDay = const [],
     this.listWindForOneDay = const [],
     this.dt,
     this.city,
-    this.listMain = const [],
+    this.listGeneralData = const [],
     this.weatherStatus = WeatherStatus.initial,
     this.weatherDaysStatus = WeatherDaysStatus.initial,
     this.weatherModel,
@@ -53,27 +61,35 @@ class WeatherState extends Equatable {
     this.listModelFiveDays = const [],
   });
   WeatherState copyWith({
+    final Weather? currentDesciptionWeather,
+    final Wind? currentWindSpeed,
+    final GeneralData? currentData,
     final List<Temp?>? listTemp,
-    final List<List<Weather>?>? listWeather,
+    final List<Weather?>? listWeatherFiveDays,
+    final List<Weather?>? listWeatherOneDay,
     final int? dt,
-    final List<Main?>? listMain,
+    final List<GeneralData?>? listGeneralData,
     final WeatherModel? weatherDaysModel,
     final WeatherModel? weatherModel,
     final WeatherStatus? weatherStatus,
     final String? errorMessage,
     final WeatherDaysStatus? weatherDaysStatus,
-    final List<ListModel>? listModelOneDay,
-    final List<ListModel>? listModelFiveDays,
+    final List<ListWeatherData>? listModelOneDay,
+    final List<ListWeatherData>? listModelFiveDays,
     final City? city,
     final List<Wind?>? listWindForOneDay,
   }) {
     return WeatherState(
+      currentDesciptionWeather:
+          currentDesciptionWeather ?? this.currentDesciptionWeather,
+      currentWindSpeed: currentWindSpeed ?? this.currentWindSpeed,
       listTemp: listTemp ?? this.listTemp,
-      listWeather: listWeather ?? this.listWeather,
+      listWeatherFiveDays: listWeatherFiveDays ?? this.listWeatherFiveDays,
+      listWeatherOneDay: listWeatherOneDay ?? this.listWeatherOneDay,
       listWindForOneDay: listWindForOneDay ?? this.listWindForOneDay,
       dt: dt ?? this.dt,
       city: city ?? this.city,
-      listMain: listMain ?? this.listMain,
+      listGeneralData: listGeneralData ?? this.listGeneralData,
       weatherModel: weatherModel ?? this.weatherModel,
       weatherStatus: weatherStatus ?? this.weatherStatus,
       errorMessage: errorMessage ?? this.errorMessage,
@@ -81,6 +97,7 @@ class WeatherState extends Equatable {
       weatherDaysStatus: weatherDaysStatus ?? this.weatherDaysStatus,
       listModelOneDay: listModelOneDay ?? this.listModelOneDay,
       listModelFiveDays: listModelFiveDays ?? this.listModelFiveDays,
+      currentData: currentData ?? this.currentData,
     );
   }
 
@@ -94,11 +111,15 @@ class WeatherState extends Equatable {
         weatherDaysStatus,
         listModelFiveDays,
         listModelOneDay,
-        listMain,
+        listGeneralData,
         dt,
         city,
         listWindForOneDay,
-        listWeather,
+        listWeatherOneDay,
         listTemp,
+        listWeatherFiveDays,
+        currentData,
+        currentWindSpeed,
+        currentDesciptionWeather,
       ];
 }

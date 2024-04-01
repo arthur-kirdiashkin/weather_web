@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/constants.dart';
-import 'package:weather_web/features/data/models/weather_model/list_model.dart';
+import 'package:weather_web/features/data/models/weather_model/weather.dart';
 import 'package:weather_web/features/presentation/utils/methods_utils.dart';
 
 class MainIconPropertiesWidget extends StatelessWidget {
-  final String main;
+  final Weather? currentWeather;
 
-  const MainIconPropertiesWidget({super.key, required this.main});
+  const MainIconPropertiesWidget({super.key, required this.currentWeather});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         MethodUtils.getLottieIcons(
-              main,
+              currentWeather!.descriptionWeather!,
               220,
               220,
             ) ??
@@ -26,7 +26,7 @@ class MainIconPropertiesWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          main,
+          currentWeather!.descriptionWeather!,
           style: const TextStyle(
             fontFamily: 'Popins',
             fontWeight: FontWeight.w700,

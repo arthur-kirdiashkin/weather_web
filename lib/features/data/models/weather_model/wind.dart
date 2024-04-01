@@ -1,17 +1,14 @@
 class Wind {
   final double? speed;
-  final int? deg;
-  final double? gust;
+  final int? windDegrees;
 
   Wind({
     required this.speed,
-    required this.deg,
-    required this.gust,
+    required this.windDegrees,
   });
 
   factory Wind.fromJson(Map<String, dynamic> json) => Wind(
         speed: json['speed'].toDouble(),
-        deg: json['deg'],
-        gust: json['gust'].toDouble(),
+        windDegrees: json['deg'],
       );
 }

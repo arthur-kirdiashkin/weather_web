@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_web/features/data/models/weather_model/main.dart';
+import 'package:weather_web/features/data/models/weather_model/general_data.dart';
 import 'package:weather_web/features/data/models/weather_model/temp.dart';
 import 'package:weather_web/features/data/models/weather_model/weather.dart';
 import 'package:weather_web/features/data/models/weather_model/wind.dart';
@@ -23,35 +23,30 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       return emit(state.copyWith(weatherStatus: WeatherStatus.error));
     }
 
-    final List<Wind?> listWind = getWeather.list!.map((e) {
-      if (e.wind != null) {
-        return e.wind;
-      }
-      return null;
-    }).toList();
+    final List<Wind?> listOfWind = [];
 
-    final List<Main?> listMain = getWeather.list!.map((e) {
-      if (e.main != null) {
-        return e.main;
-      }
-      return null;
-    }).toList();
+    final List<Weather?> listOfWeatherOneDay = [];
 
-    final List<List<Weather>?> listWeather = getWeather.list!.map((e) {
-      if (e.weather != null) {
-        return e.weather;
-      }
-      return null;
-    }).toList();
+    final List<GeneralData?> listOfGeneralData = [];
+
+    for (var listWeatherData in getWeather.listWeatherData!) {
+      listOfWind.add(listWeatherData.wind);
+      listOfWeatherOneDay.add(listWeatherData.weather);
+      listOfGeneralData.add(listWeatherData.generalData);
+    }
 
     emit(state.copyWith(
       weatherStatus: WeatherStatus.loaded,
       weatherModel: getWeather,
-      listModelOneDay: getWeather.list,
-      listMain: listMain,
+      listModelOneDay: getWeather.listWeatherData,
+      listGeneralData: listOfGeneralData,
       city: getWeather.city,
-      listWindForOneDay: listWind,
-      listWeather: listWeather,
+      listWindForOneDay: listOfWind,
+      listWeatherOneDay: listOfWeatherOneDay,
+      currentData: listOfGeneralData.first,
+      currentWindSpeed: listOfWind.first,
+      currentDesciptionWeather: listOfWeatherOneDay.first
+      
     ));
   }
 
@@ -65,18 +60,21 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       return emit(state.copyWith(weatherDaysStatus: WeatherDaysStatus.error));
     }
 
-    final List<Temp?> listTemp = weatherDays.list!.map((e) {
-      if (e.temp != null) {
-        return e.temp;
-      }
-      return null;
-    }).toList();
+    final List<Temp?> listOfTemp = [];
+
+    final List<Weather?> listOfWeatherFiveDays = [];
+
+    for (var listWeatherData in weatherDays.listWeatherData!) {
+      listOfTemp.add(listWeatherData.temp);
+      listOfWeatherFiveDays.add(listWeatherData.weather);
+    }
 
     emit(state.copyWith(
       weatherDaysStatus: WeatherDaysStatus.loadedDays,
       weatherDaysModel: weatherDays,
-      listModelFiveDays: weatherDays.list,
-      listTemp: listTemp,
+      listModelFiveDays: weatherDays.listWeatherData,
+      listTemp: listOfTemp,
+      listWeatherFiveDays: listOfWeatherFiveDays,
     ));
   }
 }

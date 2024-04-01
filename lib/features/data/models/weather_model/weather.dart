@@ -1,20 +1,11 @@
 class Weather {
-  final int? id;
-  final String? main;
-  final String? description;
-  final String? icon;
+  final String? descriptionWeather;
 
   Weather({
-    required this.id,
-    required this.main,
-    required this.description,
-    required this.icon,
+    required this.descriptionWeather,
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
-        id: json['id'],
-        main: json['main'],
-        description: json['description'],
-        icon: json['icon'],
+        descriptionWeather: json['main'],
       );
 }

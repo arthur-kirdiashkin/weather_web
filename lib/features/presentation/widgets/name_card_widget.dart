@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 import 'package:weather_web/features/presentation/blocs/weather_bloc/weather_bloc.dart';
@@ -53,8 +52,7 @@ class NameCardWidget extends StatelessWidget {
                       height: 40,
                     ),
                     Text(
-                      DataFormatUtils.getTime(
-                          state.city!.timezone!),
+                      DataFormatUtils.getTime(state.city!.timezone!),
                       style: const TextStyle(
                         height: 1,
                         fontFamily: 'Popins',
@@ -63,8 +61,7 @@ class NameCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DataFormatUtils.weekAndDay(
-                          state.city!.timezone!),
+                      DataFormatUtils.weekAndDay(state.city!.timezone!),
                       style: const TextStyle(
                         fontFamily: 'Popins',
                         fontWeight: FontWeight.w400,

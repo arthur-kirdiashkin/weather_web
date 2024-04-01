@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
-import 'package:weather_web/features/data/models/weather_model/list_model.dart';
-import 'package:weather_web/features/data/models/weather_model/main.dart';
+import 'package:weather_web/features/data/models/weather_model/general_data.dart';
 import 'package:weather_web/features/data/models/weather_model/wind.dart';
 
 class IconsPropertiesWidget extends StatelessWidget {
-  final List<Main?> listMain;
-  final List<Wind?> listWind;
+  final GeneralData? currentData;
+  final Wind? currentWindSpeed;
 
   const IconsPropertiesWidget({
     super.key,
-    required this.listMain,
-    required this.listWind,
+    required this.currentData,
+    required this.currentWindSpeed,
   });
 
   @override
@@ -30,7 +29,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 18,
                 ),
                 Text(
-                  '${listMain.first!.humidity}%',
+                  '${currentData!.humidity}%',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -63,7 +62,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${listWind.first!.speed!.ceil()}km/h',
+                  '${currentWindSpeed!.speed!.ceil()}km/h',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -100,7 +99,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 17,
                 ),
                 Text(
-                  '${listMain.first!.pressure}hPa',
+                  '${currentData!.pressure}hPa',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,
@@ -133,7 +132,7 @@ class IconsPropertiesWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${listMain.first!.seaLevel}',
+                  '${currentData!.seaLevel}',
                   style: const TextStyle(
                     fontFamily: 'Popins',
                     fontWeight: FontWeight.w600,

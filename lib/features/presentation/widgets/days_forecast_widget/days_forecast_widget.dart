@@ -70,10 +70,9 @@ class DaysForecastWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              MethodUtils.getIcons(
-                                    state.listModelFiveDays[index].weather!
-                                        .first.main!,
-                                  ) ??
+                              MethodUtils.getIcons(state
+                                      .listWeatherFiveDays[index]!
+                                      .descriptionWeather!) ??
                                   Image.network(
                                     NOT_IMAGE_URL,
                                     width: 60,
@@ -89,7 +88,7 @@ class DaysForecastWidget extends StatelessWidget {
                               ),
                               Text(
                                 DataFormatUtils.weekAndDayFive(
-                                    state.listModelFiveDays[index].dt!),
+                                    state.listModelFiveDays[index].dateTime!),
                                 style: const TextStyle(
                                   fontFamily: 'Popins',
                                   fontWeight: FontWeight.w700,

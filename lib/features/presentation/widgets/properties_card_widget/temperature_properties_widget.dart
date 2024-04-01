@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:weather_web/common/themes/app_themes.dart';
 import 'package:weather_web/features/data/models/weather_model/city.dart';
-import 'package:weather_web/features/data/models/weather_model/main.dart';
-import 'package:weather_web/features/data/models/weather_model/weather_model.dart';
+import 'package:weather_web/features/data/models/weather_model/general_data.dart';
 import 'package:weather_web/features/presentation/utils/data_format_utils.dart';
 
 class TemperaturePropertiesWidget extends StatelessWidget {
-  final List<Main?> listMain;
+  final GeneralData? currentData;
   final City city;
 
   const TemperaturePropertiesWidget(
-      {super.key, required this.listMain, required this.city});
+      {super.key, required this.currentData, required this.city});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          '${listMain.first!.temp!.ceil()}°C',
+          '${currentData!.tempOfOneDay!.ceil()}°C',
           style: const TextStyle(
             height: 1,
             fontFamily: 'Popins',
@@ -35,7 +34,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 20)),
             TextSpan(
-                text: ' ${listMain.first!.feelsLike!.ceil()}',
+                text: ' ${currentData!.feelsLike!.ceil()}',
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.iconColor,
                     fontFamily: 'Popins',
@@ -74,8 +73,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                       fontSize: 20),
                 ),
                 Text(
-                  DataFormatUtils.getClockInUtcPlus3Hours(
-                      city.sunrise!),
+                  DataFormatUtils.getClockInUtcPlus3Hours(city.sunrise!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,
@@ -108,8 +106,7 @@ class TemperaturePropertiesWidget extends StatelessWidget {
                       fontSize: 20),
                 ),
                 Text(
-                  DataFormatUtils.getClockInUtcPlus3Hours(
-                      city.sunset!),
+                  DataFormatUtils.getClockInUtcPlus3Hours(city.sunset!),
                   style: const TextStyle(
                       fontFamily: 'Popins',
                       fontWeight: FontWeight.w600,
